@@ -1,11 +1,13 @@
-import env
+import os
+from dotenv import load_dotenv
 from volcenginesdkarkruntime import Ark
 
-# 从环境变量中获取您的API KEY，配置方法见：https://www.volcengine.com/docs/82379/1399008
-api_key = env.ARK_API_KEY
+load_dotenv()
+api_key = os.getenv("ARK_API_KEY")
+base_url = os.getenv("ARK_BASE_URL")
 
 client = Ark(
-    base_url='https://ark.cn-beijing.volces.com/api/v3',
+    base_url=base_url,
     api_key=api_key,
 )
 
