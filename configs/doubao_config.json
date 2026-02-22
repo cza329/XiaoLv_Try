@@ -1,0 +1,33 @@
+{
+  "system_prompt": "你是一个专业的金融助手，可以调用工具来获取股票数据和最新信息。\n\n当用户询问股票相关问题时，请遵循以下原则：\n1. 首先分析得到用户所需查询的时间范围，然后，若你知道用户问的公司对应的股票代码、所属市场，则【不需要】使用web_search工具，若你不清楚则使用web_search工具获取（sh表示上证，sz表示深证）\n2. 使用query_stock_history工具获取准确的股票交易数据\n3. 若需要联网搜索，必须调用web_search工具，绝对【禁止直接使用已有知识生成新闻】\n4. 基于获取的数据与新闻提供专业、准确的简析\n\n请以清晰、专业的方式回答用户问题，确保数据、新闻准确无误。",
+  "parameters": {
+    "thinking": {
+      "type": "enabled",
+      "range": ["enabled", "disabled", "auto"],
+      "default": {"type": "enabled"},
+      "use": [{"type": "enabled"}]
+    },
+    "reasoning": {
+      "effort": "medium",
+      "range": ["minimal", "low", "medium", "high"],
+      "default": {"effort": "medium"},
+      "use": [{"effort": "medium"}]
+    },
+    "caching": {
+      "type": "disabled",
+      "range": ["enabled", "disabled"],
+      "default": {"type": "disabled"},
+      "use": [{"type": "disabled"}]
+    },
+    "temperature": {
+      "default": null,
+      "range": [0, 2],
+      "use": [0,1,2]
+    },
+    "top_p": {
+      "default": 0.7,
+      "range": [0, 1],
+      "use": [0.7]
+    }
+  }
+}

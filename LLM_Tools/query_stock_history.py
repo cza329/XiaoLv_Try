@@ -2,7 +2,10 @@ import os
 import requests
 from dotenv import load_dotenv
 from typing import Optional, Dict, Any, List
-load_dotenv()
+try_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # try目录的路径
+env_path = os.path.join(try_dir, "settings", ".env")  # .env文件的路径
+# 加载环境变量
+load_dotenv(dotenv_path=env_path)
 def query_stock_history(
     symbol: str,
     start_date: Optional[str] = None,
@@ -72,14 +75,14 @@ def query_stock_history(
         return f"查询过程中发生未知错误: {str(e)}"
 
 
-# 可选：测试函数
+# 测试函数
 if __name__ == "__main__":
     test_result = query_stock_history(
         symbol="000001.SZ",
-        start_date="20240601",
-        end_date="20240605",
+        start_date="20260212",
+        end_date="20260214",
         interval="d",
         adjust="n",
         fields=['t', 'o', 'h', 'l', 'c', 'v']
     )
-    print("测试输出（前200字符）:", test_result[:200])
+    print("测试输出:", test_result)
